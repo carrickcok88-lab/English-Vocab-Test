@@ -5,35 +5,37 @@
 <title>VocabForge 100 — English Learning System</title>
 <style>
 :root{--bg:#090d18;--panel:#111827;--panel2:#172033;--line:#26334d;--text:#eef2ff;--muted:#9eabc2;--p:#8b5cf6;--c:#06b6d4;--good:#22c55e;--bad:#ef4444;--warn:#f59e0b}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#25134b,#090d18 42%);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}.wrap{max-width:1100px;margin:auto;padding:18px}
-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.logo{font-weight:900;font-size:24px}.logo span{color:var(--p)}.pill{border:1px solid var(--line);border-radius:99px;padding:7px 11px;color:var(--muted);font-size:12px}
-.grid{display:grid;grid-template-columns:260px 1fr;gap:16px}.panel{background:#101827e8;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:0 18px 50px #0004}
-h1,h2,h3{margin-top:0}h1{font-size:clamp(30px,5vw,52px);line-height:1.03;letter-spacing:-1.5px}.muted{color:var(--muted);line-height:1.65}
-.btn{border:0;border-radius:11px;padding:11px 14px;font-weight:800;cursor:pointer;color:white;background:var(--p)}.btn.alt{background:var(--panel2);border:1px solid var(--line)}.btn.good{background:#166534}.btn:disabled{opacity:.45;cursor:not-allowed}
-.levels{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;max-height:65vh;overflow:auto;padding-right:3px}.lv{padding:10px 4px;border-radius:9px;border:1px solid var(--line);background:#0d1525;color:var(--text);cursor:pointer;font-weight:800;font-size:12px}.lv.active{border-color:var(--p);background:#251947}.lv.locked{opacity:.35;cursor:not-allowed}.lv.done{border-color:#1f8b4c}
-.hero{padding:26px;background:linear-gradient(140deg,#171e37,#111827);border:1px solid var(--line);border-radius:20px}.tag{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#bdaeff;font-weight:900}
-.bar{height:8px;background:#1e293b;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--c));width:0}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:15px 0}.stat{padding:13px;border:1px solid var(--line);border-radius:13px;background:#0d1525}.stat b{display:block;font-size:21px}.stat small{color:var(--muted)}
-.tabs{display:flex;gap:8px;margin:16px 0;flex-wrap:wrap}.tab{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:10px 13px;border-radius:10px;cursor:pointer}.tab.on{background:#33205d;border-color:#8061dc}
-.lesson{display:grid;gap:10px}.word{display:grid;grid-template-columns:1fr 1fr;gap:10px}.word div{background:#0d1525;border:1px solid var(--line);padding:14px;border-radius:12px}.word strong{font-size:19px}.word small{display:block;color:var(--muted);margin-top:4px}.example{border-left:3px solid var(--p);padding:10px 13px;background:#0d1525;color:#d9def0}
-.quiztop{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-bottom:8px}.q{font-size:22px;line-height:1.4;margin:18px 0}.opts{display:grid;gap:10px}.opt{padding:15px;text-align:left;border-radius:13px;background:#0d1525;border:1px solid var(--line);color:var(--text);cursor:pointer}.opt:hover:not(:disabled){border-color:#7961d9}.opt.ok{background:#12301f;border-color:var(--good)}.opt.no{background:#35171c;border-color:var(--bad)}.feedback{min-height:24px;margin-top:13px;font-weight:800}.nav{display:flex;gap:9px;margin-top:15px}
-.review{display:grid;gap:8px}.mist{border:1px solid var(--line);border-radius:12px;padding:12px;background:#0d1525}.mist .wrong{color:#fca5a5}.mist .right{color:#86efac}
-.hidden{display:none!important}.center{text-align:center}.big{font-size:64px;font-weight:950;color:#c4b5fd}
-@media(max-width:800px){.grid{grid-template-columns:1fr}.levels{max-height:240px}.word{grid-template-columns:1fr}}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#25134b,#090d18 42%);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif;line-height:1.6}.wrap{max-width:1200px;margin:auto;padding:clamp(16px,5vw,32px)}
+header{display:flex;justify-content:space-between;align-items:center;gap:clamp(12px,3vw,20px);margin-bottom:clamp(18px,4vw,32px);flex-wrap:wrap}.logo{font-weight:900;font-size:clamp(20px,4vw,28px)}.logo span{color:var(--p)}.pill{border:1px solid var(--line);border-radius:6px;padding:clamp(6px,2vw,8px) clamp(10px,3vw,14px);font-size:clamp(11px,2vw,13px);white-space:nowrap}
+.grid{display:grid;grid-template-columns:minmax(240px,260px) 1fr;gap:clamp(12px,3vw,24px)}.panel{background:#101827e8;border:1px solid var(--line);border-radius:16px;padding:clamp(14px,4vw,24px);box-shadow:0 18px 50px #0004;transition:all .3s ease}
+h1,h2,h3{margin-top:0;transition:color .2s ease}h1{font-size:clamp(30px,5vw,52px);line-height:1.1;letter-spacing:-1.5px}h2{font-size:clamp(24px,4vw,36px);line-height:1.15}h3{font-size:clamp(18px,3vw,24px);line-height:1.2}.muted{color:var(--muted);line-height:1.7}
+.btn{border:0;border-radius:11px;padding:clamp(10px,2vw,12px) clamp(12px,3vw,16px);font-weight:800;cursor:pointer;color:white;background:var(--p);transition:all .25s ease;font-size:clamp(13px,2vw,16px)}.btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 20px rgba(139,92,246,.3)}.btn:active:not(:disabled){transform:translateY(0)}.btn.alt{background:var(--panel2);border:1px solid var(--line)}.btn.alt:hover{background:var(--line)}.btn.good{background:var(--good)}.btn.good:hover:not(:disabled){box-shadow:0 8px 20px rgba(34,197,86,.3)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.levels{display:grid;grid-template-columns:repeat(auto-fit,minmax(36px,1fr));gap:6px;max-height:65vh;overflow:auto;padding-right:6px}.lv{padding:clamp(8px,2vw,10px) clamp(4px,2vw,6px);border-radius:8px;border:1px solid var(--line);background:#0d1525;color:var(--text);cursor:pointer;font-weight:700;font-size:clamp(12px,2vw,14px);transition:all .2s ease}.lv:hover:not(:disabled){border-color:var(--p);color:var(--p);transform:scale(1.05)}.lv.active{background:var(--p);border-color:var(--p);color:#090d18}.lv.done{background:var(--good);border-color:var(--good);color:#000}.lv.locked{opacity:.4;cursor:not-allowed}.lv::-webkit-scrollbar{width:6px}.lv::-webkit-scrollbar-track{background:#0d1525;border-radius:3px}.lv::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}.lv::-webkit-scrollbar-thumb:hover{background:var(--p)}
+.hero{padding:clamp(20px,4vw,32px);background:linear-gradient(140deg,#171e37,#111827);border:1px solid var(--line);border-radius:16px;transition:border-color .3s ease}.hero:hover{border-color:var(--c)}.tag{font-size:clamp(10px,2vw,12px);text-transform:uppercase;letter-spacing:1px;color:#bdaeff;margin-bottom:clamp(12px,2vw,16px)}
+.bar{height:8px;background:#1e293b;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--p),var(--c));width:0;transition:width .3s ease}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:clamp(12px,3vw,20px);margin:clamp(16px,3vw,24px) 0}.stat{padding:clamp(12px,2vw,16px);background:var(--panel2);border:1px solid var(--line);border-radius:12px;text-align:center;transition:all .2s ease}.stat:hover{border-color:var(--p);transform:translateY(-2px)}.stat b{display:block;font-size:clamp(24px,4vw,32px);line-height:1.2;color:var(--c)}.stat small{display:block;font-size:clamp(11px,2vw,13px);color:var(--muted);margin-top:6px}
+.tabs{display:flex;gap:clamp(6px,2vw,10px);margin:clamp(12px,2vw,16px) 0;flex-wrap:wrap}.tab{border:1px solid var(--line);background:var(--panel2);color:var(--text);padding:clamp(8px,2vw,12px) clamp(10px,2vw,14px);border-radius:9px;cursor:pointer;font-size:clamp(12px,2vw,14px);transition:all .2s ease}.tab:hover{border-color:var(--p)}.tab.on{background:var(--p);color:#090d18;border-color:var(--p)}
+.lesson{display:grid;gap:clamp(10px,2vw,14px)}.word{display:grid;grid-template-columns:1fr 1fr;gap:clamp(10px,2vw,12px)}.word div{background:#0d1525;border:1px solid var(--line);padding:clamp(12px,2vw,16px);border-radius:12px;transition:all .2s ease}.word div:hover{border-color:var(--c);background:#111d2e}.word strong{font-size:clamp(16px,3vw,18px);color:var(--c);display:block;margin-bottom:6px}.word small{color:var(--muted);font-size:clamp(13px,2vw,14px);line-height:1.5}
+.quiztop{display:flex;justify-content:space-between;color:var(--muted);font-size:clamp(12px,2vw,13px);margin-bottom:clamp(12px,2vw,16px);flex-wrap:wrap;gap:10px}.q{font-size:clamp(18px,3vw,24px);line-height:1.5;margin:clamp(16px,3vw,24px) 0}.opts{display:grid;gap:clamp(10px,2vw,12px)}.opt{padding:clamp(12px,2vw,16px) clamp(14px,3vw,18px);border:1.5px solid var(--line);background:var(--panel2);color:var(--text);border-radius:11px;cursor:pointer;font-size:clamp(14px,2vw,16px);transition:all .2s ease;line-height:1.6}.opt:hover:not(:disabled){border-color:var(--p);background:var(--line)}.opt.ok{background:var(--good);border-color:var(--good);color:#000}.opt.no{background:var(--bad);border-color:var(--bad)}.opt:disabled{cursor:not-allowed}
+.review{display:grid;gap:clamp(10px,2vw,12px)}.mist{border:1px solid var(--line);border-radius:12px;padding:clamp(12px,2vw,16px);background:#0d1525;transition:all .2s ease}.mist:hover{border-color:var(--c)}.mist .wrong{color:#fca5a5}.mist .right{color:#86efac}
+.nav{display:flex;gap:clamp(10px,2vw,12px);margin-top:clamp(16px,3vw,24px);justify-content:flex-start;flex-wrap:wrap}.hidden{display:none!important}.center{text-align:center}.big{font-size:clamp(48px,8vw,72px);font-weight:950;color:#c4b5fd;margin:clamp(16px,3vw,24px) 0}
+.example{background:var(--panel2);border-left:3px solid var(--p);padding:clamp(12px,2vw,16px);border-radius:8px;font-size:clamp(13px,2vw,14px);line-height:1.8;margin:clamp(12px,2vw,16px) 0}
+@media(max-width:900px){.grid{grid-template-columns:1fr}.levels{grid-template-columns:repeat(auto-fit,minmax(40px,1fr));max-height:120px}.word{grid-template-columns:1fr}.hero{padding:clamp(18px,3vw,24px)}}
+@media(max-width:600px){.wrap{padding:clamp(12px,3vw,16px)}.grid{gap:clamp(10px,2vw,16px)}.pill{min-width:100%}.stats{grid-template-columns:1fr}.word div{padding:clamp(12px,2vw,14px)}}
 </style>
 </head>
 <body><div class="wrap">
 <header><div class="logo">Vocab<span>Forge 100</span></div><div class="pill">100 HARI • 4.500 SOAL</div></header>
 <div class="grid">
 <aside class="panel">
-<h3>Roadmap 100 Hari</h3><p class="muted" style="font-size:13px">1 level = 1 hari. Level berikutnya terbuka setelah level sebelumnya selesai.</p>
+<h3>Roadmap 100 Hari</h3><p class="muted" style="font-size:clamp(12px,2vw,13px)">1 level = 1 hari. Level berikutnya terbuka setelah level sebelumnya selesai.</p>
 <div id="levels" class="levels"></div>
 </aside>
 <main id="main">
 <section id="dashboard" class="hero">
 <div class="tag">English Learning System</div><h1>100 hari. 100 level.<br>Vocabulary yang benar-benar kepakai.</h1>
 <p class="muted">Metode: belajar → latihan → recall → final challenge → review. Jangan mengejar jumlah kata. Kejar kemampuan mengenali dan memakai kata dalam konteks.</p>
-<div class="stats"><div class="stat"><b id="dDay">1</b><small>Hari aktif</small></div><div class="stat"><b id="dDone">0</b><small>Level selesai</small></div><div class="stat"><b id="dWords">0</b><small>Target kata</small></div></div>
-<button class="btn" onclick="openLevel(current)">Mulai hari ini →</button>
+<div class="stats"><div class="stat"><b id="dDay">1</b><small>Hari aktif</small></div><div class="stat"><b id="dDone">0</b><small>Level selesai</small></div><div class="stat"><b id="dWords">0</b><small>Kata pelajaran</small></div><div class="stat"><b id="dAccuracy">0%</b><small>Akurasi rata-rata</small></div></div>
+<div class="nav"><button class="btn" onclick="openLevel(current)">Mulai hari ini →</button></div>
 </section>
 <section id="learn" class="panel hidden"></section>
 <section id="quiz" class="panel hidden"></section>
@@ -41,28 +43,31 @@ h1,h2,h3{margin-top:0}h1{font-size:clamp(30px,5vw,52px);line-height:1.03;letter-
 </main></div></div>
 <script>
 const topics=[
-["Daily Life","rutinitas, rumah, aktivitas harian"],["School","kelas, tugas, ujian"],["People","kepribadian dan hubungan sosial"],["Emotions","perasaan dan respons"],["Food","makanan dan kebiasaan makan"],["Travel","perjalanan dan transportasi"],["Technology","internet dan perangkat"],["Gaming","strategi, performa, komunikasi"],["Work","pekerjaan dan karier"],["Society","masyarakat dan kehidupan sosial"]
+["Daily Life","rutinitas, rumah, aktivitas harian"],["School","kelas, tugas, ujian"],["People","kepribadian dan hubungan sosial"],["Emotions","perasaan dan respons"],["Food","makanan dan kebiasaan makan"],["Travel","perjalanan dan petualangan"],["Work","pekerjaan dan karir"],["Technology","perangkat dan internet"],["Sports","olahraga dan kompetisi"],["Society","masyarakat dan budaya"]
 ];
 const banks=[
-["routine","rutinitas"],["schedule","jadwal"],["prepare","mempersiapkan"],["improve","meningkatkan"],["notice","menyadari/memperhatikan"],["avoid","menghindari"],["require","membutuhkan"],["provide","menyediakan"],["reliable","dapat dipercaya"],["accurate","akurat"],
-["achieve","mencapai"],["effort","usaha"],["challenge","tantangan"],["habit","kebiasaan"],["decision","keputusan"],["opportunity","kesempatan"],["experience","pengalaman"],["confident","percaya diri"],["patient","sabar"],["curious","penasaran"],
-["exhausted","sangat lelah"],["frustrated","frustrasi"],["relieved","lega"],["anxious","cemas"],["embarrassed","malu"],["grateful","bersyukur"],["reluctant","enggan/ragu"],["eager","antusias"],["calm","tenang"],["disappointed","kecewa"],
-["efficient","efisien"],["essential","penting/diperlukan"],["significant","penting/berarti"],["temporary","sementara"],["permanent","permanen"],["flexible","fleksibel"],["relevant","relevan"],["obvious","jelas"],["specific","spesifik"],["general","umum"],
-["purchase","membeli"],["afford","mampu membeli"],["refund","pengembalian uang"],["reservation","reservasi"],["destination","tujuan"],["departure","keberangkatan"],["arrival","kedatangan"],["luggage","bagasi"],["delay","penundaan"],["commute","perjalanan rutin"],
+["routine","rutinitas"],["schedule","jadwal"],["prepare","mempersiapkan"],["improve","meningkatkan"],["notice","menyadari/memperhatikan"],["avoid","menghindari"],["require","membutuhkan"],["provide","menyediakan"],["develop","mengembangkan"],["manage","mengelola"],
+["achieve","mencapai"],["effort","usaha"],["challenge","tantangan"],["habit","kebiasaan"],["decision","keputusan"],["opportunity","kesempatan"],["experience","pengalaman"],["confident","percaya diri"],["motivation","motivasi"],["success","kesuksesan"],
+["exhausted","sangat lelah"],["frustrated","frustrasi"],["relieved","lega"],["anxious","cemas"],["embarrassed","malu"],["grateful","bersyukur"],["reluctant","enggan/ragu"],["eager","antusias"],["confused","bingung"],["amazed","terkesan"],
+["efficient","efisien"],["essential","penting/diperlukan"],["significant","penting/berarti"],["temporary","sementara"],["permanent","permanen"],["flexible","fleksibel"],["relevant","relevan"],["obvious","jelas"],["creative","kreatif"],["logical","logis"],
+["purchase","membeli"],["afford","mampu membeli"],["refund","pengembalian uang"],["reservation","reservasi"],["destination","tujuan"],["departure","keberangkatan"],["arrival","kedatangan"],["luggage","bagasi"],["itinerary","rencana perjalanan"],["souvenir","kenang-kenangan"],
 ["device","perangkat"],["privacy","privasi"],["security","keamanan"],["update","pembaruan"],["feature","fitur"],["glitch","gangguan teknis"],["access","mengakses"],["account","akun"],["upload","mengunggah"],["download","mengunduh"],
-["strategy","strategi"],["teammate","rekan satu tim"],["objective","tujuan"],["performance","performa"],["reaction","reaksi"],["opponent","lawan"],["victory","kemenangan"],["defeat","kekalahan"],["practice","latihan"],["focus","fokus"],
-["career","karier"],["employee","karyawan"],["employer","pemberi kerja"],["deadline","batas waktu"],["responsibility","tanggung jawab"],["skill","keterampilan"],["salary","gaji"],["interview","wawancara"],["promotion","promosi"],["colleague","rekan kerja"],
-["society","masyarakat"],["behavior","perilaku"],["influence","pengaruh"],["equality","kesetaraan"],["conflict","konflik"],["support","dukungan"],["community","komunitas"],["environment","lingkungan"],["impact","dampak"],["issue","masalah/topik"]
+["strategy","strategi"],["teammate","rekan satu tim"],["objective","tujuan"],["performance","performa"],["reaction","reaksi"],["opponent","lawan"],["victory","kemenangan"],["defeat","kekalahan"],["score","skor"],["champion","juara"],
+["career","karier"],["employee","karyawan"],["employer","pemberi kerja"],["deadline","batas waktu"],["responsibility","tanggung jawab"],["skill","keterampilan"],["salary","gaji"],["interview","wawancara"],["promotion","promosi"],["retirement","pensiun"],
+["society","masyarakat"],["behavior","perilaku"],["influence","pengaruh"],["equality","kesetaraan"],["conflict","konflik"],["support","dukungan"],["community","komunitas"],["environment","lingkungan"],["culture","budaya"],["tradition","tradisi"]
 ];
-const phrasals=[["give up","menyerah"],["find out","mengetahui/menemukan informasi"],["look after","merawat"],["run into","bertemu secara tidak sengaja"],["carry on","melanjutkan"],["figure out","memahami/menemukan solusi"],["deal with","menangani"],["put off","menunda"],["look forward to","menantikan"],["work out","berhasil/menemukan solusi"]];
-const idioms=[["a piece of cake","sangat mudah"],["break the ice","mencairkan suasana"],["once in a blue moon","sangat jarang"],["under the weather","kurang sehat"],["hit the nail on the head","tepat mengenai inti masalah"],["cost an arm and a leg","sangat mahal"],["on the same page","memiliki pemahaman yang sama"],["call it a day","mengakhiri pekerjaan hari itu"],["better late than never","lebih baik terlambat daripada tidak sama sekali"],["spill the beans","membocorkan rahasia"]];
+const phrasals=[["give up","menyerah"],["find out","mengetahui/menemukan informasi"],["look after","merawat"],["run into","bertemu secara tidak sengaja"],["carry on","melanjutkan"],["figure out","memahami"],["break down","merasa kewalahan/rusak"],["come across","menemukan"],["point out","menunjukkan"],["turn down","menolak"],["set up","menyiapkan/mendirikan"],["bring up","membesarkan/mengangkat topik"],["put off","menunda"],["go through","mengalami"],["call off","membatalkan"]
+];
+const idioms=[["a piece of cake","sangat mudah"],["break the ice","mencairkan suasana"],["once in a blue moon","sangat jarang"],["under the weather","kurang sehat"],["hit the nail on the head","tepat sasaran"],["cost an arm and a leg","sangat mahal"],["rain cats and dogs","hujan lebat"],["raining cats and dogs","hujan deras"],["spill the beans","membocorkan rahasia"],["piece of cake","sangat mudah"],["pull someone's leg","bercanda/menggombal"],["call it a day","selesaikan hari"],["beat around the bush","memulur-mulur"],["get the ball rolling","memulai sesuatu"],["on the ball","waspada/kompeten"]
+];
 
 let current=Number(localStorage.getItem("vfLevel")||1), state=JSON.parse(localStorage.getItem("vfState")||'{"done":[],"scores":{},"streak":0}'), qs=[], qi=0,score=0,mistakes=[];
 const save=()=>localStorage.setItem("vfState",JSON.stringify(state));
 function renderLevels(){
  const el=document.getElementById("levels");el.innerHTML="";
  for(let i=1;i<=100;i++){let b=document.createElement("button");b.className="lv"+(i===current?" active ":"")+(state.done.includes(i)?" done":"")+(i>current?" locked":"");b.textContent=i;b.disabled=i>current;b.onclick=()=>openLevel(i);el.appendChild(b)}
- document.getElementById("dDay").textContent=current;document.getElementById("dDone").textContent=state.done.length;document.getElementById("dWords").textContent=current*10;
+ let avgScore=state.done.length>0?Math.round(Object.values(state.scores).reduce((a,b)=>a+b,0)/state.done.length):0;
+ document.getElementById("dDay").textContent=current;document.getElementById("dDone").textContent=state.done.length;document.getElementById("dWords").textContent=current*10;document.getElementById("dAccuracy").textContent=avgScore+"%";
 }
 function hideAll(){["dashboard","learn","quiz","result"].forEach(x=>document.getElementById(x).classList.add("hidden"))}
 function openLevel(n){
@@ -71,7 +76,7 @@ function openLevel(n){
  document.getElementById("learn").innerHTML=`<div class="tag">Hari ${n} • Level ${n} • ${topics[(n-1)%topics.length][0]}</div>
  <h2>${topics[(n-1)%topics.length][1]}</h2><p class="muted">Pelajari 10 kata inti hari ini. Baca arti dan contoh, lalu coba ingat tanpa melihat terjemahan.</p>
  <div class="word">${bank.map(x=>`<div><strong>${x[0]}</strong><small>${x[1]}</small></div>`).join("")}</div>
- <h3 style="margin-top:18px">Cara menghafal hari ini</h3>
+ <h3 style="margin-top:clamp(16px,3vw,24px)">Cara menghafal hari ini</h3>
  <div class="example">1. Baca kata Inggrisnya keras-keras.<br>2. Tutup arti Indonesianya dan coba recall.<br>3. Buat satu kalimat sendiri.<br>4. Setelah quiz, ulangi kata yang salah besok.</div>
  <div class="nav"><button class="btn" onclick="startQuiz()">Mulai 45 soal →</button></div>`;
 }
@@ -79,7 +84,6 @@ function levelWords(n){
  let arr=[];
  const shift=(n-1)*10;
  for(let i=0;i<10;i++) arr.push(banks[(shift+i)%banks.length]);
- // difficulty vocabulary is supplemented by generated level variants after core bank cycles
  return arr;
 }
 function makeQuestions(n){
@@ -88,18 +92,19 @@ function makeQuestions(n){
   let distract=words.filter((_,j)=>j!==i).slice(0,3).map(x=>x[1]);
   out.push({type:"Arti kata",q:`Apa arti kata "${w[0]}"?`,o:shuffle([w[1],...distract]),ans:w[1]});
  });
- for(let i=0;i<10;i++){let w=words[i%words.length], context=`Rina ingin ${w[1]} sebelum ujian. Kata bahasa Inggris yang paling tepat adalah...`,o=words.map(x=>x[0]).slice(0,4);if(!o.includes(w[0]))o[0]=w[0];out.push({type:"Isi kalimat",q:context,o:shuffle(o),ans:w[0]})}
- for(let i=0;i<10;i++){let w=words[(i+3)%words.length],o=words.map(x=>x[0]).slice(0,4);out.push({type:"Konteks",q:`Dalam konteks kehidupan sehari-hari, "${w[0]}" paling dekat dengan...`,o:shuffle([w[1],...words.filter(x=>x[0]!==w[0]).slice(0,3).map(x=>x[1])]),ans:w[1]})}
+ for(let i=0;i<10;i++){let w=words[i%words.length], context=`Rina ingin ${w[1]} sebelum ujian. Kata bahasa Inggris yang paling tepat adalah...`,o=words.map(x=>x[0]).slice(0,4);if(!o.includes(w[0]))o[0]=w[0];out.push({type:"Konteks",q:context,o:shuffle(o),ans:w[0]})}
+ for(let i=0;i<10;i++){let w=words[(i+3)%words.length],o=words.map(x=>x[0]).slice(0,4);out.push({type:"Konteks",q:`Dalam konteks kehidupan sehari-hari, "${w[0]}" paling dekat dengan...`,o:shuffle([w[0],...o.filter(x=>x!==w[0]).slice(0,3)]),ans:w[0]})}
  for(let i=0;i<10;i++){let p=phrasals[(n+i)%phrasals.length];let o=phrasals.map(x=>x[1]).slice(0,4);out.push({type:"Phrasal Verb",q:`Apa arti "${p[0]}"?`,o:shuffle([p[1],...o.filter(x=>x!==p[1]).slice(0,3)]),ans:p[1]})}
  for(let i=0;i<5;i++){let d=idioms[(n+i)%idioms.length];let o=idioms.map(x=>x[1]).slice(0,4);out.push({type:"FINAL CHALLENGE",q:`Apa arti ungkapan "${d[0]}" dalam penggunaan sehari-hari?`,o:shuffle([d[1],...o.filter(x=>x!==d[1]).slice(0,3)]),ans:d[1]})}
  return shuffle(out);
 }
 function startQuiz(){hideAll();document.getElementById("quiz").classList.remove("hidden");qs=makeQuestions(current);qi=0;score=0;mistakes=[];showQ()}
 function showQ(){
- let x=qs[qi],q=document.getElementById("quiz");q.innerHTML=`<div class="quiztop"><span>${x.type}</span><span>${qi+1} / 45 • Skor ${score}</span></div><div class="bar"><i style="width:${qi/45*100}%"></i></div><div class="q">${x.q}</div><div class="opts">${x.o.map((v,i)=>`<button class="opt" onclick="answer(${i})">${String.fromCharCode(65+i)}. ${v}</button>`).join("")}</div><div id="fb" class="feedback"></div><div class="nav"><button id="nx" class="btn hidden" onclick="nextQ()">Soal berikutnya →</button></div>`}
+ let x=qs[qi],q=document.getElementById("quiz");q.innerHTML=`<div class="quiztop"><span>${x.type}</span><span>${qi+1} / 45 • Skor ${score}</span></div><div class="bar"><i style="width:${qi/45*100}%"></i></div><div class="q">${x.q}</div><div class="opts">${x.o.map((o,i)=>`<button class="opt" onclick="answer(${i})">${o}</button>`).join("")}</div><div id="fb" class="muted" style="margin-top:16px"></div><button id="nx" class="btn alt" onclick="nextQ()" style="margin-top:12px;display:none">Soal berikutnya →</button>`;
+}
 function answer(i){
  let x=qs[qi],buttons=[...document.querySelectorAll(".opt")];buttons.forEach(b=>b.disabled=true);
- let chosen=x.o[i];let correct=chosen===x.ans;buttons[i].classList.add(correct?"ok":"no");if(!correct){let ci=x.o.indexOf(x.ans);if(ci>=0)buttons[ci].classList.add("ok");mistakes.push({q:x.q,y:chosen,a:x.ans})}
+ let chosen=x.o[i];let correct=chosen===x.ans;buttons[i].classList.add(correct?"ok":"no");if(!correct){let ci=x.o.indexOf(x.ans);if(ci>=0)buttons[ci].classList.add("ok");mistakes.push({q:x.q,your:chosen,correct:x.ans})}
  if(correct)score++;document.getElementById("fb").textContent=correct?"✓ Benar":"✗ Jawaban benar: "+x.ans;document.getElementById("nx").classList.remove("hidden");
 }
 function nextQ(){qi++;if(qi>=45)finish();else showQ()}
@@ -108,11 +113,12 @@ function finish(){
  if(!state.done.includes(current))state.done.push(current);
  if(current<100 && pct>=70) current++;localStorage.setItem("vfLevel",current);save();renderLevels();hideAll();
  let r=document.getElementById("result");r.classList.remove("hidden");
- r.innerHTML=`<div class="center"><div class="tag">Level selesai</div><div class="big">${pct}%</div><h2>${score}/45 benar</h2><p class="muted">${pct>=90?"Sangat kuat. Fokuskan review pada kata yang masih lambat diingat.":pct>=70?"Lulus. Level berikutnya terbuka.":"Belum cukup kuat. Ulangi level ini dan fokus pada kata yang salah."}</p>
- <div class="stats"><div class="stat"><b>${score}</b><small>Benar</small></div><div class="stat"><b>${45-score}</b><small>Salah</small></div><div class="stat"><b>${state.done.length}</b><small>Level selesai</small></div></div>
- <div class="nav" style="justify-content:center"><button class="btn" onclick="openLevel(${pct>=70&&current<=100?current:Math.max(1,current-1)})">${pct>=70?"Lanjut level →":"Ulangi level"}</button><button class="btn alt" onclick="showReview()">Review kesalahan</button></div></div><div id="review" class="review hidden"></div>`;
+ r.innerHTML=`<div class="center"><div class="tag">Level selesai</div><div class="big">${pct}%</div><h2>${score}/45 benar</h2><p class="muted">${pct>=90?"Sangat kuat. Fokuskan review pada kata yang salah.":pct>=70?"Bagus! Lanjut ke level berikutnya.":"Masih perlu latihan. Ulangi level ini."}</p></div>
+ <div class="stats"><div class="stat"><b>${score}</b><small>Benar</small></div><div class="stat"><b>${45-score}</b><small>Salah</small></div><div class="stat"><b>${state.done.length}</b><small>Level selesai</small></div><div class="stat"><b>${100-current+1}</b><small>Sisa level</small></div></div>
+ <div id="review"></div>
+ <div class="nav" style="justify-content:center"><button class="btn" onclick="openLevel(${pct>=70&&current<=100?current:Math.max(1,current-1)})">${pct>=70?"Lanjut level →":"Ulangi level"}</button><button class="btn alt" onclick="showReview()" style="display:${mistakes.length?'inline-block':'none'}">Review kesalahan</button><button class="btn alt" onclick="hideAll();renderLevels();document.getElementById('dashboard').classList.remove('hidden')">Kembali ke dashboard</button></div>`;
 }
-function showReview(){let el=document.getElementById("review");el.classList.remove("hidden");el.innerHTML="<h3>Review vocabulary</h3>"+(mistakes.length?mistakes.map((m,i)=>`<div class="mist"><b>${i+1}. ${m.q}</b><br><span class="wrong">Jawaban lu: ${m.y}</span><br><span class="right">Benar: ${m.a}</span></div>`).join(""):"<p class='muted'>Tidak ada kesalahan. Perfect.</p>")}
+function showReview(){let el=document.getElementById("review");el.classList.remove("hidden");el.innerHTML="<h3>Review kesalahan</h3>"+(mistakes.length?mistakes.map((m,i)=>`<div class="mist"><b>${i+1}. ${m.q}</b><br><small class="wrong">Jawaban Anda: ${m.your}</small><br><small class="right">Jawaban benar: ${m.correct}</small></div>`).join(""):"<p class='muted'>Tidak ada kesalahan!</p>")}
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 renderLevels();
 </script></body></html>
