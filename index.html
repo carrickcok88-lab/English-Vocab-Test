@@ -5,186 +5,228 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VocabForge 100 — English Learning System</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="css/flipcard.css">
-  <link rel="stylesheet" href="css/quiz.css">
-  <link rel="stylesheet" href="css/dashboard.css">
 </head>
 <body>
   <div class="wrap">
-    <!-- Header -->
+    <!-- ========== HEADER ========== -->
     <header>
       <div class="logo">Vocab<span>Forge 100</span></div>
-      <div class="pill">100 HARI • 4.500 SOAL</div>
+      <div class="pill">⚡ 100 HARI • 4.500 SOAL</div>
       <div class="header-actions">
-        <button class="btn-icon" id="btnDarkMode" title="Toggle Dark Mode">🌙</button>
-        <button class="btn-icon" id="btnSettings" title="Settings">⚙️</button>
+        <button class="btn-icon" id="btnSettings" title="Pengaturan">⚙️</button>
+        <button class="btn-icon" id="btnStats" title="Statistik">📊</button>
       </div>
     </header>
 
-    <!-- Main Grid Layout -->
     <div class="grid">
-      <!-- Sidebar: Level Navigation -->
+      <!-- ========== SIDEBAR ========== -->
       <aside class="panel">
-        <h3>Roadmap 100 Hari</h3>
-        <p class="muted" style="font-size: clamp(12px, 2vw, 13px)">
-          1 level = 1 hari. Level berikutnya terbuka setelah level sebelumnya selesai.
-        </p>
+        <h3>📍 Roadmap 100 Hari</h3>
+        <p class="muted" style="font-size:13px">1 level = 1 hari. Level berikutnya terbuka setelah level sebelumnya selesai.</p>
         <div id="levels" class="levels"></div>
       </aside>
 
-      <!-- Main Content -->
+      <!-- ========== MAIN CONTENT ========== -->
       <main id="main">
         <!-- Dashboard Section -->
         <section id="dashboard" class="hero">
-          <div class="tag">English Learning System</div>
+          <div class="tag">✨ English Learning System</div>
           <h1>100 hari. 100 level.<br>Vocabulary yang benar-benar kepakai.</h1>
-          <p class="muted">
-            Metode: belajar → latihan → recall → final challenge → review. 
-            Jangan mengejar jumlah kata. Kejar kemampuan mengenali dan memakai kata dalam konteks.
-          </p>
+          <p class="muted">Metode: belajar → latihan → recall → final challenge → review. Jangan mengejar jumlah kata. Kejar kemampuan mengenali dan memakai kata dalam konteks.</p>
           
-          <!-- Statistics -->
+          <!-- Stats with Icons -->
           <div class="stats">
             <div class="stat">
-              <b id="statCurrentDay">1</b>
+              <span class="stat-icon">📅</span>
+              <b id="dDay">1</b>
               <small>Hari Aktif</small>
             </div>
             <div class="stat">
-              <b id="statCompleted">0</b>
+              <span class="stat-icon">🎯</span>
+              <b id="dDone">0</b>
               <small>Level Selesai</small>
             </div>
             <div class="stat">
-              <b id="statWords">0</b>
-              <small>Kata Pelajaran</small>
+              <span class="stat-icon">📚</span>
+              <b id="dWords">0</b>
+              <small>Kata Belajar</small>
             </div>
             <div class="stat">
-              <b id="statAccuracy">0%</b>
-              <small>Akurasi Rata-rata</small>
-            </div>
-            <div class="stat">
-              <b id="statStreak">0</b>
-              <small>Hari Konsisten</small>
-            </div>
-            <div class="stat">
-              <b id="statXP">0</b>
+              <span class="stat-icon">⚡</span>
+              <b id="dXP">0</b>
               <small>Total XP</small>
+            </div>
+            <div class="stat">
+              <span class="stat-icon">🔥</span>
+              <b id="dStreak">0</b>
+              <small>Streak</small>
+            </div>
+            <div class="stat">
+              <span class="stat-icon">⭐</span>
+              <b id="dAccuracy">0%</b>
+              <small>Akurasi</small>
             </div>
           </div>
 
+          <div class="bar">
+            <i id="progressBar" style="width: 0%"></i>
+          </div>
+
           <div class="nav">
-            <button class="btn" id="btnStartLesson">Mulai Pelajaran →</button>
-            <button class="btn btn-alt" id="btnReview">Review Vocab 📚</button>
+            <button class="btn" onclick="openLevel(current)">Mulai Hari Ini →</button>
+            <button class="btn btn-alt" onclick="showStats()">📊 Lihat Statistik</button>
           </div>
         </section>
 
-        <!-- Learning Section: Flipcard -->
+        <!-- Learning Section -->
         <section id="learn" class="panel hidden">
           <div class="lesson-header">
-            <div class="tag" id="lessonTag">Hari 1</div>
-            <h2 id="lessonTitle">Daily Life</h2>
-            <p class="muted" id="lessonDesc">rutinitas, rumah, aktivitas harian</p>
+            <div class="tag" id="learnTag">Hari 1 • Level 1</div>
+            <h2 id="learnTitle">Daily Life</h2>
+            <p class="muted">Pelajari 10 kata inti hari ini. Baca arti dan contoh, lalu coba ingat tanpa melihat terjemahan.</p>
           </div>
 
-          <div class="learning-modes">
-            <button class="tab" data-mode="flipcard" active>📇 Flipcard</button>
-            <button class="tab" data-mode="list">📝 List View</button>
-            <button class="tab" data-mode="tips">💡 Tips Belajar</button>
+          <!-- Learning Mode Tabs -->
+          <div class="tabs">
+            <div class="tab active" data-mode="flipcard" onclick="switchMode('flipcard', this)">🎴 Flipcard</div>
+            <div class="tab" data-mode="vocabulary" onclick="switchMode('vocabulary', this)">📖 Vocabulary</div>
+            <div class="tab" data-mode="example" onclick="switchMode('example', this)">💡 Contoh</div>
           </div>
 
           <!-- Flipcard Mode -->
-          <div class="mode-content" data-mode="flipcard">
-            <div id="flipcardContainer" class="flipcard-area"></div>
-          </div>
+          <div id="flipcardMode" class="mode-content active">
+            <div class="flipcard-area">
+              <div class="flipcard-progress">
+                <div class="progress-bar">
+                  <div class="progress-fill" id="cardProgress" style="width: 0%"></div>
+                </div>
+                <div class="progress-text"><span id="cardCounter">1</span> / <span id="cardTotal">10</span></div>
+              </div>
 
-          <!-- List View Mode -->
-          <div class="mode-content" data-mode="list" hidden>
-            <div id="listContainer" class="vocabulary-list"></div>
-          </div>
+              <div class="flipcard-deck">
+                <div class="flipcard" id="card">
+                  <div class="flipcard-inner">
+                    <div class="flipcard-front">
+                      <div class="flipcard-content">
+                        <p class="flipcard-hint">Klik untuk melihat arti</p>
+                        <h2 class="flipcard-word" id="cardWord">word</h2>
+                        <div class="difficulty-badge" id="cardDifficulty">Mudah</div>
+                      </div>
+                    </div>
+                    <div class="flipcard-back">
+                      <div class="flipcard-content">
+                        <p class="flipcard-meaning" id="cardMeaning">meaning</p>
+                        <p class="flipcard-example">
+                          <em id="cardExample">Example sentence</em>
+                        </p>
+                        <div class="flipcard-actions">
+                          <button class="btn-audio" title="Dengarkan">🔊</button>
+                          <button class="btn-bookmark" title="Bookmark" onclick="toggleBookmark()">🔖</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-          <!-- Tips Mode -->
-          <div class="mode-content" data-mode="tips" hidden>
-            <div class="example">
-              <h3>💡 Tips Belajar Efektif</h3>
-              <ol>
-                <li><strong>Flipcard:</strong> Klik kartu untuk lihat arti. Gunakan Space untuk flip.</li>
-                <li><strong>Audio:</strong> Dengarkan pengucapan dengan klik tombol 🔊</li>
-                <li><strong>Bookmark:</strong> Simpan kata sulit dengan ⭐</li>
-                <li><strong>Contoh:</strong> Pelajari contoh kalimat untuk konteks</li>
-                <li><strong>Navigasi:</strong> Gunakan ← → atau swipe untuk berpindah kartu</li>
-              </ol>
+              <div class="flipcard-navigation">
+                <button class="btn-prev" id="btnPrev" onclick="prevCard()" disabled>← Sebelumnya</button>
+                <button class="btn-skip" onclick="skipCard()">Lewati</button>
+                <button class="btn-next" id="btnNext" onclick="nextCard()">Selanjutnya →</button>
+              </div>
+
+              <div class="flipcard-shortcuts">
+                💡 Tip: Klik kartu untuk flip | Gunakan tombol navigasi atau keyboard arrow keys
+              </div>
+            </div>
+
+            <div class="nav" style="margin-top: 24px;">
+              <button class="btn" onclick="startQuiz()">Mulai 45 Soal Quiz →</button>
             </div>
           </div>
 
-          <div class="nav">
-            <button class="btn" id="btnStartQuiz">Mulai 45 Soal Quiz →</button>
-            <button class="btn btn-alt" id="btnBackToDashboard">← Kembali</button>
+          <!-- Vocabulary List Mode -->
+          <div id="vocabularyMode" class="mode-content">
+            <div class="vocabulary-list" id="vocabList"></div>
+            <div class="nav">
+              <button class="btn" onclick="startQuiz()">Siap Quiz? Mulai 45 Soal →</button>
+            </div>
+          </div>
+
+          <!-- Example Mode -->
+          <div id="exampleMode" class="mode-content">
+            <div class="lesson" id="exampleList"></div>
+            <div class="nav">
+              <button class="btn" onclick="startQuiz()">Sudah Siap? Mulai Quiz →</button>
+            </div>
           </div>
         </section>
 
         <!-- Quiz Section -->
         <section id="quiz" class="panel hidden">
           <div class="quiz-header">
-            <div class="quiz-info">
-              <span id="quizType">Arti Kata</span>
-              <span id="quizProgress">1 / 45</span>
-            </div>
-            <div class="bar">
-              <i id="quizProgressBar" style="width: 0%"></i>
-            </div>
+            <div class="tag" id="quizTag">Quiz Mode</div>
+            <h2>45 Soal Kuis Harian</h2>
+          </div>
+
+          <div class="quiz-info">
+            <span id="quizType">Arti Kata</span>
+            <span id="quizProgress">1 / 45 • Skor <b>0</b></span>
+          </div>
+
+          <div class="bar">
+            <i id="quizProgress" style="width: 0%"></i>
           </div>
 
           <div class="quiz-content">
-            <div class="q" id="questionText">Apa arti kata "routine"?</div>
-            
-            <div class="opts" id="optionsContainer">
-              <!-- Generated dynamically -->
+            <div class="q" id="question">Pertanyaan akan muncul di sini</div>
+            <div class="opts" id="options"></div>
+            <div class="quiz-feedback muted" id="feedback" style="display: none;">
+              Feedback akan muncul di sini
             </div>
+          </div>
 
-            <div class="quiz-feedback">
-              <div id="feedbackMessage" class="muted" style="margin-top: 16px;"></div>
-              <button class="btn btn-alt" id="btnNextQuestion" style="margin-top: 12px; display: none;">
-                Soal Berikutnya →
-              </button>
-            </div>
+          <div class="nav" style="justify-content: flex-end;">
+            <button class="btn" id="nextBtn" onclick="nextQ()" style="display: none;">Selanjutnya →</button>
           </div>
         </section>
 
         <!-- Result Section -->
         <section id="result" class="panel hidden">
           <div class="result-content">
-            <div class="tag" id="resultTag">Level Selesai</div>
-            <div class="big" id="resultScore">0%</div>
-            <h2 id="resultTitle">0 / 45 Benar</h2>
-            <p class="muted" id="resultMessage">Pesan feedback</p>
+            <div class="tag">✨ Level Selesai!</div>
+            <div class="big" id="resultScore">85%</div>
+            <h2 id="resultText">38/45 Benar</h2>
+            <p class="muted" id="resultMessage">Sangat baik! Teruskan semangat belajarnya!</p>
 
-            <!-- Result Statistics -->
             <div class="stats">
               <div class="stat">
+                <span class="stat-icon">✅</span>
                 <b id="resultCorrect">0</b>
                 <small>Benar</small>
               </div>
               <div class="stat">
+                <span class="stat-icon">❌</span>
                 <b id="resultWrong">0</b>
                 <small>Salah</small>
               </div>
               <div class="stat">
-                <b id="resultTime">00:00</b>
-                <small>Waktu</small>
+                <span class="stat-icon">⚡</span>
+                <b id="resultXP">0</b>
+                <small>XP Didapat</small>
               </div>
               <div class="stat">
-                <b id="resultXP">0</b>
-                <small>XP Diperoleh</small>
+                <span class="stat-icon">🎯</span>
+                <b id="resultCompleted">0</b>
+                <small>Level Selesai</small>
               </div>
             </div>
 
-            <!-- Mistake Review -->
-            <div id="mistakeReview" class="review hidden\" style=\"margin-top: 24px;\"></div>
+            <div id="reviewSection" class="review" style="margin-top: 24px;"></div>
 
-            <!-- Action Buttons -->
-            <div class="nav" style="justify-content: center;">
-              <button class="btn" id="btnContinueLevel">Lanjut Level →</button>
-              <button class="btn btn-alt" id="btnShowReview" style="display: none;">Review Kesalahan 📋</button>
-              <button class="btn btn-alt" id="btnBackDashboard">← Kembali ke Dashboard</button>
+            <div class="nav" style="justify-content: center; gap: 12px;">
+              <button class="btn" id="resultBtn" onclick="nextLevelOrRetry()">Lanjut Level →</button>
+              <button class="btn btn-alt" onclick="showReview()">📋 Lihat Review</button>
             </div>
           </div>
         </section>
@@ -196,48 +238,48 @@
   <div id="settingsModal" class="modal hidden">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Pengaturan</h2>
-        <button class="btn-close" id="btnCloseSettings">✕</button>
+        <h2>⚙️ Pengaturan</h2>
+        <button class="btn-close" onclick="closeModal('settingsModal')">✕</button>
       </div>
       <div class="modal-body">
         <div class="setting-item">
           <label>
-            <input type="checkbox" id="soundToggle" checked>
-            Aktifkan Suara
+            <input type="checkbox" id="darkMode" checked> Mode Gelap
           </label>
         </div>
         <div class="setting-item">
           <label>
-            <input type="checkbox" id="autoPlayToggle">
-            Putar Audio Otomatis
+            <input type="checkbox" id="soundEnabled"> Suara Diaktifkan
           </label>
         </div>
         <div class="setting-item">
-          <label>Tingkat Kesulitan:
-            <select id="difficultySelect">
-              <option value="easy">Mudah</option>
-              <option value="medium" selected>Sedang</option>
-              <option value="hard">Sulit</option>
-            </select>
+          <label>
+            <input type="checkbox" id="autoPlay"> Auto-play Audio
           </label>
         </div>
-        <div class="setting-item">
-          <button class="btn btn-danger" id="btnResetData">Reset Semua Data</button>
-        </div>
+        <button class="btn btn-danger" onclick="resetProgress()">Atur Ulang Progress</button>
       </div>
     </div>
   </div>
 
-  <!-- Scripts in correct order -->
+  <!-- Statistics Modal -->
+  <div id="statsModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>📊 Statistik Pembelajaran</h2>
+        <button class="btn-close" onclick="closeModal('statsModal')">✕</button>
+      </div>
+      <div class="modal-body" id="statsContent">
+        <!-- Stats akan dimuat di sini -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="js/config.js"></script>
   <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
   <script src="js/database.js"></script>
-  <script src="js/utils/helpers.js"></script>
-  <script src="js/utils/srs.js"></script>
-  <script src="js/modules/flipcard.js"></script>
-  <script src="js/modules/quiz.js"></script>
-  <script src="js/modules/progress.js"></script>
-  <script src="js/core/ui.js"></script>
-  <script src="js/core/app.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
