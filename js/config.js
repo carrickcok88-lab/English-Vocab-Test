@@ -14,7 +14,7 @@ const CONFIG = {
   
   // SRS Settings (Spaced Repetition System)
   SRS: {
-    INTERVALS: [1, 3, 7, 14, 30], // Days for review
+    INTERVALS: [1, 3, 7, 14, 30],
     EASE_FACTOR: 2.5,
     INITIAL_INTERVAL: 1,
     EASY_BONUS: 1.3,
@@ -47,25 +47,11 @@ const CONFIG = {
     ACHIEVEMENTS: 'vf_achievements'
   },
   
-  // Difficulty Levels
-  DIFFICULTY: {
-    EASY: 'easy',
-    MEDIUM: 'medium',
-    HARD: 'hard'
-  },
-  
   // Question Types
   QUESTION_TYPES: {
-    MEANING: 'Arti kata',
+    MEANING: 'Arti Kata',
     CONTEXT: 'Konteks',
     PHRASAL: 'Phrasal Verb',
-    IDIOM: 'FINAL CHALLENGE',
-    LISTENING: 'Listening',
-    WRITING: 'Menulis'
+    IDIOM: 'FINAL CHALLENGE'
   }
 };
-
-// Export for modules
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = CONFIG;
-}
